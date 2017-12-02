@@ -124,6 +124,8 @@ public class MainActivity extends Activity {
 
         itemName.setText(disposable);
         itemAction.setText(objectType);
+        objects.clear();
+        probabilities.clear();
 
     }
 }
