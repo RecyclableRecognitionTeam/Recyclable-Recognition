@@ -9,7 +9,6 @@ import java.util.List;
 public class TallyDetectorAlgorithm implements iDetectorAlgorithm {
 
 
-    @Override
     public double isRecyclable(List<String> detections, List<Double> probabilities, Disposables disposables) {
         int recyclableCount = 0;
         int trashCount = 0;
@@ -26,7 +25,6 @@ public class TallyDetectorAlgorithm implements iDetectorAlgorithm {
         return recyclableCount != 0 ? recyclableCount / (double) (recyclableCount + trashCount) : 0;
     }
 
-    @Override
     public double isTrash(List<String> detections, List<Double> probabilities, Disposables disposables) {
         int recyclableCount = 0;
         int trashCount = 0;

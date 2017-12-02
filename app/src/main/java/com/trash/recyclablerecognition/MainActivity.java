@@ -14,11 +14,16 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
+import java.util.List;
+
+import clarifai2.dto.model.output.ClarifaiOutput;
+import clarifai2.dto.prediction.Concept;
 
 /**
  * Created by kyle on 12/2/17.
@@ -28,6 +33,8 @@ public class MainActivity extends Activity {
     Button button;
     ImageView imageView;
     static final int CAM_REQUEST = 1;
+    CallClarifai Clarifai = new CallClarifai();
+    List<ClarifaiOutput<Concept>> clarifaiOutput;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,5 +81,13 @@ public class MainActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         String path = "sdcard/camera_app/cam_image.jpg";
         imageView.setImageDrawable(Drawable.createFromPath(path));
+        runClarifai();
+    }
+
+    private void runClarifai(){
+        clarifaiOutput = Clarifai.getClarifai(getFile());
+        for(int i = 0 ; i < clarifaiOutput.size() ; i++) {
+            
+        }
     }
 }
