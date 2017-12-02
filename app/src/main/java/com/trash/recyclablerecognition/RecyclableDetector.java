@@ -9,6 +9,7 @@ import java.util.List;
 public class RecyclableDetector {
 
     private iDetectorAlgorithm detectorAlgorithm;
+    private Disposables disposables;
     private double thresh;
 
 
@@ -19,15 +20,40 @@ public class RecyclableDetector {
      */
     public RecyclableDetector(iDetectorAlgorithm detectorAlgorithm, double thresh){
         this.detectorAlgorithm = detectorAlgorithm;
+        this.disposables = new Disposables();
         this.thresh = thresh;
     }
 
     public boolean isRecyclable(List<String> detections, List<Double> probabilities){
-        return detectorAlgorithm.isRecyclable(detections, probabilities) >= thresh;
-    }
+        double trashProb = detectorAlgorithm.isTrash(detections, probabilities, disposables);
+        double recyProb = detectorAlgorithm.isRecyclable(detections, probabilities, disposables);
+        return  recyProb >= thresh && recyProb > trashProb;    }
 
     public boolean isTrash(List<String> detections, List<Double> probabilities){
-        return detectorAlgorithm.isTrash(detections, probabilities) >= thresh;
+        double trashProb = detectorAlgorithm.isTrash(detections, probabilities, disposables);
+        double recyProb = detectorAlgorithm.isRecyclable(detections, probabilities, disposables);
+        return  trashProb >= thresh && trashProb > recyProb;
+    }
+
+    public String getMostProbableDisposable(List<String> detections, List<Double> probabilities){
+        boolean isTrash = isTrash(detections, probabilities);
+        if(isTrash){
+            for (String item : detections) {
+                if(disposables.isTrash(item)){
+                    return item;
+                }
+            }
+        }
+        boolean isRecyclable = isRecyclable(detections, probabilities);
+        if(isRecyclable){
+            for (String item : detections) {
+                if(disposables.isRecyclable(item)){
+                    return item;
+                }
+            }
+        }
+
+        return "unknown";
     }
 
 }

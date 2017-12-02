@@ -17,10 +17,16 @@ public class Disposables {
     }
 
     public boolean isRecyclable(String obj){
-        return true;
+        if(obj.equals("paper") || obj.equals("writing") || obj.equals("sheet")){
+            return true;
+        }
+        return false;
     }
 
     public boolean isTrash(String obj){
-        return true;
+        if(obj.equals("food") || obj.equals("pizza") || obj.equals("utensil")){
+            return true;
+        }
+        return false;
     }
 }
