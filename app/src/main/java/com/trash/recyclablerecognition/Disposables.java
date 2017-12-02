@@ -11,7 +11,7 @@ import java.util.List;
 public class Disposables {
 
     public List<String> getRecyclables(){
-        return Arrays.asList("paper","aluminum","aerosol" , "carton","glass","tin can", "newspaper", "cardboard", "bottle", "can","magazine","envelope","plastic","book","tray", "sheet", "writing");
+        return Arrays.asList("paper","aluminum","aerosol" , "carton","glass","tin can", "newspaper", "cardboard", "bottle", "can","magazine","envelope","plastic","book","tray", "sheet", "writing", "document");
     }
 
     public List<String> getTrash(){

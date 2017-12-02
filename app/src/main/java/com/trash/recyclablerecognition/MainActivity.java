@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ import clarifai2.dto.prediction.Concept;
 public class MainActivity extends Activity {
     Button button;
     ImageView imageView;
+    TextView itemName, itemAction;
     static final int CAM_REQUEST = 1;
     CallClarifai Clarifai = new CallClarifai();
     List<ClarifaiOutput<Concept>> clarifaiOutput;
@@ -57,6 +59,8 @@ public class MainActivity extends Activity {
         }
         button = (Button) findViewById(R.id.button);
         imageView = (ImageView)findViewById(R.id.image_view);
+        itemAction = findViewById(R.id.item_action);
+        itemName = findViewById(R.id.item_name);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -99,6 +103,8 @@ public class MainActivity extends Activity {
             probabilities.add((double) data.get(i).value());
         }
 
+        System.out.println(objects);
+
         RecyclableDetector detector = new RecyclableDetector(new TallyDetectorAlgorithm(), 0.6);
         String disposable = detector.getMostProbableDisposable(objects, probabilities);
         System.out.println("Most likely disposable: " + disposable);
@@ -115,6 +121,9 @@ public class MainActivity extends Activity {
         }
 
         System.out.println(objectType);
+
+        itemName.setText(disposable);
+        itemAction.setText(objectType);
 
     }
 }
