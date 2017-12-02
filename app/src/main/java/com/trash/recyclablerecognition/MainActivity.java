@@ -98,5 +98,23 @@ public class MainActivity extends Activity {
             objects.add(data.get(i).name());
             probabilities.add((double) data.get(i).value());
         }
+
+        RecyclableDetector detector = new RecyclableDetector(new TallyDetectorAlgorithm(), 0.6);
+        String disposable = detector.getMostProbableDisposable(objects, probabilities);
+        System.out.println("Most likely disposable: " + disposable);
+        boolean isRecyclable = detector.isRecyclable(objects, probabilities);
+        boolean isTrash = detector.isTrash(objects, probabilities);
+        String objectType = "I'm not sure what this is, give me a hint or check your local waste management site";
+
+        if(isRecyclable){
+            objectType = "Recycle this!";
+        }
+
+        if(isTrash){
+            objectType = "Throw it in the trash!";
+        }
+
+        System.out.println(objectType);
+
     }
 }
