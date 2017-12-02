@@ -1,5 +1,6 @@
 package com.trash.recyclablerecognition;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,25 +9,22 @@ import java.util.List;
  */
 
 public class Disposables {
+
     public List<String> getRecyclables(){
-        return new LinkedList<>();
+        return Arrays.asList("paper","aluminum","aerosol" , "carton","glass","tin can", "newspaper", "cardboard", "bottle", "can","magazine","envelope","plastic","book","tray", "sheet", "writing");
     }
 
     public List<String> getTrash(){
-        return new LinkedList<>();
+        return Arrays.asList("plate", "food", "utensil", "napkin" ,"plastic bag","foam","light bulb", "straw","cup","cap","diaper");
     }
 
     public boolean isRecyclable(String obj){
-        if(obj.equals("paper") || obj.equals("writing") || obj.equals("sheet")){
-            return true;
-        }
-        return false;
+        List<String> recycle = getRecyclables();
+        return recycle.contains(obj);
     }
 
     public boolean isTrash(String obj){
-        if(obj.equals("food") || obj.equals("pizza") || obj.equals("utensil")){
-            return true;
-        }
-        return false;
+        List<String> trash = getTrash();
+        return trash.contains(obj);
     }
 }

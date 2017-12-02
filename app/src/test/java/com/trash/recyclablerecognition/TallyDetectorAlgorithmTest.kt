@@ -15,7 +15,7 @@ class TallyDetectorAlgorithmTest {
     private lateinit var disposables: Disposables
     private val recyclableObjectDetections = mutableListOf("paper", "sheet", "writing", "person")
     private val recyclableObjectProbabilities = mutableListOf(0.995, 0.99, 0.94, 0.81)
-    private val trashObjectDetections = mutableListOf("food", "pizza", "paper", "person", "utensil")
+    private val trashObjectDetections = mutableListOf("food", "plate", "paper", "person", "utensil")
     private val trashObjectProbabilities = mutableListOf(0.995, 0.99, 0.87, 0.81, 0.8)
 
     @Before
