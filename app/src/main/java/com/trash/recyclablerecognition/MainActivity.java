@@ -9,6 +9,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -20,7 +21,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import clarifai2.dto.model.output.ClarifaiOutput;
 import clarifai2.dto.prediction.Concept;
@@ -35,6 +40,8 @@ public class MainActivity extends Activity {
     static final int CAM_REQUEST = 1;
     CallClarifai Clarifai = new CallClarifai();
     List<ClarifaiOutput<Concept>> clarifaiOutput;
+    List<String> objects = new ArrayList<String>();
+    List<Double> probabilities = new ArrayList<Double>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,8 +93,10 @@ public class MainActivity extends Activity {
 
     private void runClarifai(){
         clarifaiOutput = Clarifai.getClarifai(getFile());
-        for(int i = 0 ; i < clarifaiOutput.size() ; i++) {
-            
+        List<Concept> data = clarifaiOutput.get(0).data();
+        for (int i = 0; i < data.size(); i++) {
+            objects.add(data.get(i).name());
+            probabilities.add((double) data.get(i).value());
         }
     }
 }
