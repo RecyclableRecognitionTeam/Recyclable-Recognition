@@ -6,6 +6,9 @@ Disclaimer: This app was built in 10 hours, so there may be misclassifications! 
 
 ## Software Engineers
 Meixintong Zha
+
 Tarek Safa
+
 Adam Kaminski
+
 Kyle Corry
