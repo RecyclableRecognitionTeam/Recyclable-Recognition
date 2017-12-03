@@ -4,6 +4,9 @@ Most people do not know what is recyclable or not, and this hurts the environmen
 
 Disclaimer: This app was built in 10 hours, so there may be misclassifications! In our testing, most items were marked correctly. 
 
+![](screenshots/screenshot-food.png)
+![](screenshots/screenshot-paper.png)
+
 ## Software Engineers
 Meixintong Zha
 
